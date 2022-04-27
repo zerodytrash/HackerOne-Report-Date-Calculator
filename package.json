@@ -1,0 +1,29 @@
+{
+  "name": "hackerone-report-date-calculator",
+  "version": "1.0.0",
+  "description": "Tool to calculate the creation dates of undisclosed HackerOne reports. Enter the ID of the original report to see how old the report is. This tool will calculate the creation time of the report based on the surrounding public reports.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "zerodytrash",
+  "license": "Unlicense",
+  "dependencies": {
+    "axios": "^0.27.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.18.0"
+  },
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zerodytrash/HackerOne-Report-Date-Calculator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/zerodytrash/HackerOne-Report-Date-Calculator/issues"
+  },
+  "homepage": "https://github.com/zerodytrash/HackerOne-Report-Date-Calculator#readme"
+}

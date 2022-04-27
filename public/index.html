@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>HackerOne Report Date Calculator</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tool to calculate the creation dates of undisclosed HackerOne reports. Enter the ID of the original report here to see how old the report is. This tool will calculate the creation time of the report based on the surrounding public reports.">
+    <meta name="keywords" content="HackerOne,Report,Date,Calculator,Timestamp,Timeframe,Creation Time,Duplicate,Tool,Reports" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <link href="/css/style.css" rel="stylesheet">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/helper.js" defer></script>
+    <script src="/js/app.js" defer></script>
+</head>
+
+<body>
+    <h1>HackerOne Report Date Calculator</h1>
+
+    <div>
+        <p>Got a duplicate? Enter the ID of the original report here to see how old the report is.<br>
+            This tool will calculate the <b>creation time</b> of the report based on the surrounding public reports.</p>
+    </div>
+
+    <div id="inputs">
+        <td>Report ID:</td>
+        <td><input type="number" id="inputReportId"></td>
+    </div>
+
+    <pre id="errorMessage"></pre>
+    <noscript>Please enable JavaScript!</noscript>
+
+    <div id="result">
+        <div class="surroundingReports before"></div>
+        <div class="report">
+            <div class="reportId"></div>
+            <div class="reportDetails">
+                <table>
+                    <tr>
+                       <td><b>Possible Timeframe:</b></td>
+                       <td class="timeframe"></td>
+                    </tr>
+                    <tr>
+                        <td><b>Estimated Timestamp:</b></td>
+                        <td class="estimatedDate"></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="estimatedAge"></td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+        <div class="surroundingReports after"></div>
+    </div>
+
+    <div class="api">
+        <h2>API</h2>
+        <pre id="apiUrl"></pre>
+    </div>
+
+    <div class="source">
+        <h2>Source Code</h2>
+        <a href="https://github.com/zerodytrash/HackerOne-Report-Date-Calculator" target="_blank">https://github.com/zerodytrash/HackerOne-Report-Date-Calculator</a>
+    </div>
+</body>
+
+</html>

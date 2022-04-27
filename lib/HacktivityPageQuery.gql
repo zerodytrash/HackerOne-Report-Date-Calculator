@@ -1,0 +1,78 @@
+query HacktivityPageQuery($querystring: String, $orderBy: HacktivityItemOrderInput, $secureOrderBy: FiltersHacktivityItemFilterOrder, $where: FiltersHacktivityItemFilterInput, $count: Int, $cursor: String) {
+  hacktivity_items(
+    first: $count
+    after: $cursor
+    query: $querystring
+    order_by: $orderBy
+    secure_order_by: $secureOrderBy
+    where: $where
+  ) {
+    total_count
+    ...HacktivityList
+    __typename
+  }
+}
+
+fragment HacktivityList on HacktivityItemConnection {
+  total_count
+  pageInfo {
+    endCursor
+    hasNextPage
+    __typename
+  }
+  edges {
+    node {
+      ... on HacktivityItemInterface {
+        id
+        databaseId: _id
+        __typename
+      }
+      __typename
+    }
+    ...HacktivityItem
+    __typename
+  }
+  __typename
+}
+
+fragment HacktivityItem on HacktivityItemUnionEdge {
+  node {
+    ... on HacktivityItemInterface {
+      id
+      type: __typename
+    }
+    ... on Disclosed {
+      id
+      ...HacktivityItemDisclosed
+      __typename
+    }
+    __typename
+  }
+  __typename
+}
+
+fragment HacktivityItemDisclosed on Disclosed {
+  id
+  report {
+    id
+    databaseId: _id
+    title
+    substate
+    __typename
+    created_at
+    disclosed_at
+  }
+  reporter {
+    username
+  }
+  team {
+    name
+    handle
+  }
+  latest_disclosable_action
+  latest_disclosable_activity_at
+  total_awarded_amount
+  severity_rating
+  currency
+  __typename
+}

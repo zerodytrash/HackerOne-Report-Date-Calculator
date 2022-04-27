@@ -1,0 +1,55 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    color: rgb(45, 45, 45)
+}
+
+a {
+    color: #4592cb;
+    text-decoration: none;
+}
+
+#inputs {
+    margin-top: 30px;
+}
+
+.report {
+    background-color: rgb(214, 214, 214);
+    width: 450px;
+    margin: 5px auto;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+.reportDetails td {
+    padding: 5px;
+}
+
+.reportDetails td:first-child {
+    text-align: right;
+}
+
+.reportDetails td:last-child {
+    text-align: left;
+}
+
+.reportId {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+#result {
+    margin: 30px;
+    display: none;
+}
+
+.api {
+    margin-top: 100px;
+    color: rgb(118, 118, 118);
+}
+
+.source {
+    margin-top: 100px;
+    color: rgb(118, 118, 118);
+}
