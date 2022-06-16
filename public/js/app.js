@@ -1,51 +1,67 @@
 let urlReportId = parseInt(getSearchParam('reportId'));
 let currentReportId = 0;
-let isResultVisible = false;
 let windowMainTitle = document.title;
 
-$('#result').css('display', 'block');
-$('#result').hide();
+const $result = $('#result');
+const $inputReportId = $('#inputReportId');
+const $errorMessage = $('#errorMessage');
+const $apiUrl = $('#apiUrl');
+
+$result.css('display', 'block');
+$result.hide();
 
 setApiUrl();
 
-$('#inputReportId').change(onInputValueChange);
-$('#inputReportId').keyup(onInputValueChange);
+$inputReportId.change(onInputValueChange);
+$inputReportId.keyup(onInputValueChange);
+$inputReportId.focus();
 
 if (urlReportId) {
-    $('#inputReportId').val(urlReportId);
-    $('#inputReportId').change();
+    $inputReportId.val(urlReportId);
+    $inputReportId.change();
 }
 
 function onInputValueChange() {
     let reportId = parseInt($(this).val());
-    if (!isNaN(reportId) && reportId > 0 && currentReportId !== reportId) {
-        loadReport(reportId);
+
+    setReportId(reportId || 0);
+}
+
+function setReportId(reportId) {
+    if (currentReportId !== reportId) {
+        currentReportId = reportId;
+
+        if (reportId > 0) {
+            loadReport(reportId);
+        }
+
+        if (reportId === 0) {
+            $result.slideUp(200);
+        }
+
+        document.title = reportId > 0 ? `#${reportId} - ${windowMainTitle}` : windowMainTitle;
+        addSearchParam('reportId', reportId);
+        setApiUrl();
     }
 }
 
 async function loadReport(reportId) {
-    currentReportId = reportId;
-    addSearchParam('reportId', reportId);
-
     try {
         let result = await $.get(`/api/reports/${reportId}`);
 
-        setResult(result);
+        // Prevent overlapping responses
+        if (result.reportId === currentReportId) {
+            setResult(result);
+        }
+        
     } catch (err) {
-        $('#errorMessage').text(err.responseJSON?.errorMessage || err.statusText || err.message);
+        $errorMessage.text(err.responseJSON?.errorMessage || 'A network error has occurred');
     }
 }
 
 function setResult(result) {
 
-    // Prevent overlapping responses
-    if (result.reportId !== currentReportId) {
-        return;
-    }
-
-    document.title = '#' + result.reportId + ' - ' + windowMainTitle;
-
-    $('#errorMessage').text('');
+    $errorMessage.text('');
 
     let $report = $('.report').first();
 
@@ -58,12 +74,7 @@ function setResult(result) {
     setSurroundingReport($('.surroundingReports.before').first(), result.surroundingReports.before, true);
     setSurroundingReport($('.surroundingReports.after').first(), result.surroundingReports.after, false);
 
-    setApiUrl();
-
-    if (!isResultVisible) {
-        $('#result').slideDown(200);
-        isResultVisible = true;
-    }
+    $result.slideDown(200);
 }
 
 function setSurroundingReport(container, items, isBefore) {
@@ -106,5 +117,5 @@ function setSurroundingReport(container, items, isBefore) {
 }
 
 function setApiUrl() {
-    $('#apiUrl').text(location.origin + '/api/reports/' + (currentReportId || '{reportId}'));
+    $apiUrl.text(location.origin + '/api/reports/' + (currentReportId || '{reportId}'));
 }

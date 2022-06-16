@@ -6,17 +6,21 @@
 
     <title>HackerOne Report Date Calculator</title>
 
+    <link href="https://zerody.one/img/icon.png" rel="icon">
+
     <meta name="viewport" content="width=device-width, initial-scale=0.8">
-    <meta name="description" content="Tool to calculate the creation dates of undisclosed HackerOne reports. Enter the ID of the report here to see how old the report is. This tool will calculate the creation time of the report based on the surrounding public reports.">
+    <meta name="description" content="Tool to calculate the creation dates of undisclosed HackerOne reports. Enter the ID of the report to see how old the report is. This tool calculates the report creation time based on the surrounding public reports.">
     <meta name="keywords" content="HackerOne,Report,Date,Calculator,Timestamp,Timeframe,Creation Time,Duplicate,Tool,Reports" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 
     <link href="/css/style.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script src="/js/helper.js" defer></script>
     <script src="/js/app.js" defer></script>
 </head>
@@ -25,7 +29,7 @@
     <h1>HackerOne Report Date Calculator</h1>
 
     <div>
-        <p>Got a duplicate? Enter the ID of the original report here to see how old the report is.<br>
+        <p>Got a duplicate? Enter the ID of the original (undisclosed) report here to see how old the report is.<br>
             This tool will calculate the <b>creation time</b> of the report based on the surrounding public reports.</p>
     </div>
 
@@ -62,14 +66,11 @@
         <div class="surroundingReports after"></div>
     </div>
 
-    <div class="api">
-        <h2>API</h2>
+    <div class="footer">
         <pre id="apiUrl"></pre>
-    </div>
-
-    <div class="source">
-        <h2>Source Code</h2>
-        <a href="https://github.com/zerodytrash/HackerOne-Report-Date-Calculator" target="_blank">https://github.com/zerodytrash/HackerOne-Report-Date-Calculator</a>
+        <a href="https://github.com/zerodytrash/HackerOne-Report-Date-Calculator" target="_blank">Source Code</a> &bull; 
+        <a href="https://twitter.com/kaeferjaeger" target="_blank">#kaeferjaeger</a> &bull; 
+        <a href="https://hackerone.com/zerody" target="_blank">@zerody</a>
     </div>
 </body>
 
